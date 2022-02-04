@@ -35,26 +35,30 @@ class Partner:
         self.email = email
         self.available_dates = [] if available_dates == None else available_dates
 
-# class Program:
-#     @classmethod
-#     def get_partner(self):
+class Program():
+    @classmethod
+    def run(self):
 
-### This makes a set of all of the countries present in the data.
-all_countries = set()
-for partner in data['partners']:
-    all_countries.add(partner['country'])
+        ### This makes a set of all of the countries present in the data.
+        all_countries = set()
+        for partner in data['partners']:
+            all_countries.add(partner['country'])
 
-### This takes the set of country-name-strings and turns them into variables and defines them as a Country object.
-countries = []
-for country in all_countries:
-    ### I got the following from DelftStack. This allows the country strings to be variables to assign classes to.
-    globals()[country.replace(' ', '_')] = Country(country_name=country)
-    countries.append(globals()[country.replace(' ', '_')])
+        ### This takes the set of country-name-strings and turns them into variables and defines them as a Country object.
+        countries = []
+        for country in all_countries:
+            ### I got the following from DelftStack. This allows the country strings to be the names of variables to assign classes to.
+            ### The .replace(' ', '_') I figured out myself because you can't have spaces in variable names.
+            globals()[country.replace(' ', '_')] = Country(country_name=country)
+            countries.append(globals()[country.replace(' ', '_')])
 
-### This is how I both get the information for the partners, and group them by country.
-### I cut this out because I just put the get_partners function in the init
-# for country in countries:
-#     country.get_partners()
+        ### This is how I both get the information for the partners, and group them by country.
+        ### I cut this out because I just put the get_partners function in the init
+        # for country in countries:
+        #     country.get_partners()
 
-### HOLY COW!!! THIS WORKS?!?!?!?!?! globals() is my new favorite thing!!!
-print(United_States.partners[0].first_name)
+        ### HOLY COW!!! THIS WORKS?!?!?!?!?! globals() is my new favorite thing!!!
+        # print(United_States.partners[0].first_name)
+
+
+Program.run()
