@@ -100,8 +100,8 @@ class Program():
         for country in countries:
             invitations[country.country_name] = {
                 'starting date': country.meeting_date,
-                'attendees': [],
-                'number of attendees': country.attending_count
+                'number of attendees': country.attending_count,
+                'attendees': []
             }
             for partner in country.partners:
                 if partner.availability == True:
