@@ -54,7 +54,7 @@ class Country:
             for date in partner.available_dates:
                 if self.date_after(date) in partner.available_dates:
                     workable_dates.append(date)
-        self.meeting_date =  statistics.mode(workable_dates)
+        self.meeting_date = statistics.mode(workable_dates)
 
         ### This function counts how many partners can make it to the meeting, and changes their value to True if so.
         for partner in self.partners:
