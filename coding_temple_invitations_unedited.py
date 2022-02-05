@@ -1,10 +1,11 @@
-import pip._vendor.requests
+import requests
 import statistics
 
 api_link = f'https://ct-mock-tech-assessment.herokuapp.com/'
-data = pip._vendor.requests.get(api_link).json()
+raw_data = requests.get(api_link).json()
+API_KEY = 'data'
 
-# for partner in data['partners']:
+# for partner in raw_data['partners']:
 #     print(partner)
 
 days_in_month = {
@@ -30,7 +31,7 @@ class Country:
     
     # def get_partners(self): ### This used to be the name of the function, but it was more efficient to have it in the init
                               ### This defines each partner.
-        for partner in data['partners']:
+        for partner in raw_data['partners']:
             if partner['country'] == self.country_name:
                 ### Made a list of available dates.
                 a_d = []
@@ -98,7 +99,7 @@ class Program():
 
         ### This makes a set of all of the countries present in the data.
         all_countries = set()
-        for partner in data['partners']:
+        for partner in raw_data['partners']:
             all_countries.add(partner['country'])
 
         ### This takes the set of country-name-strings and turns them into variables and defines them as a Country object.
@@ -118,10 +119,10 @@ class Program():
         # print(United_States.partners[0].first_name)
         # print(Canada.attending_count)
 
-        API = {}
-        API['data'] = {}
+        invitations = {}
+        invitations['data'] = {}
         for country in countries:
-            API['data'][country.country_name] = {
+            invitations['data'][country.country_name] = {
                 'starting date': country.meeting_date,
                 'attendees': [],
                 'number of attendees': country.attending_count
@@ -132,8 +133,16 @@ class Program():
                         'name': partner.first_name + ' ' + partner.last_name,
                         'email': partner.email
                     }
-                    API['data'][country.country_name]['attendees'].append(a)
-        print(API)     
+                    invitations['data'][country.country_name]['attendees'].append(a)
+        return invitations
 
-
-Program.run()
+source_code = Program.run()
+### I was having trouble with posting so I got this from an article Alex sent me.
+data = {
+    'api_dev_key':API_KEY,
+    'api_option':'paste',
+    'api_paste_code': source_code,
+    'api_paste_format':'python'
+}
+r = requests.post(url = api_link, data=data)
+print(r.text)
