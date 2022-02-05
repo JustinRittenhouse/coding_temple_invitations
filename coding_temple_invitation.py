@@ -3,7 +3,6 @@ import statistics
 
 api_link = f'https://ct-mock-tech-assessment.herokuapp.com/'
 raw_data = requests.get(api_link).json()
-API_KEY = 'data'
 
 days_in_month = {
     '01': 31,
@@ -98,9 +97,8 @@ class Program():
 
         ### Finally, the API dictionary is created using the information aquired.
         invitations = {}
-        invitations['data'] = {}
         for country in countries:
-            invitations['data'][country.country_name] = {
+            invitations[country.country_name] = {
                 'starting date': country.meeting_date,
                 'attendees': [],
                 'number of attendees': country.attending_count
@@ -111,16 +109,9 @@ class Program():
                         'name': partner.first_name + ' ' + partner.last_name,
                         'email': partner.email
                     }
-                    invitations['data'][country.country_name]['attendees'].append(a)
-        return invitations
+                    invitations[country.country_name]['attendees'].append(a)
+        api_post = requests.post(api_link, data={'data':invitations})
+        api_post
+        print(api_post)
 
-source_code = Program.run()
-### I was having trouble with posting so I got this from an article Alex sent me.
-data = {
-    'api_dev_key':API_KEY,
-    'api_option':'paste',
-    'api_paste_code': source_code,
-    'api_paste_format':'python'
-}
-r = requests.post(url = api_link, data=data)
-print(r)
+Program.run()
