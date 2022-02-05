@@ -1,5 +1,5 @@
 # coding_temple_invitations
-I retrieved data of Coding Temple partners, and then returned data for a meeting time.
+I retrieved data of Coding Temple partners, and then returned data for a meeting times for each country.
 
 coding_temple_invitations.py is the only file needed. The others are for testing, and the unedited version shows my notes and thoughts along the way.
 
