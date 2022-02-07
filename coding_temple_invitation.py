@@ -5,18 +5,18 @@ api_link = f'https://ct-mock-tech-assessment.herokuapp.com/'
 raw_data = requests.get(api_link).json()
 
 days_in_month = {
-    '01': 31,
-    '02': 28,
-    '03': 31,
-    '04': 30,
-    '05': 31,
-    '06': 30,
-    '07': 31,
-    '08': 31,
-    '09': 30,
-    '10': 31,
-    '11': 30,
-    '12': 31
+    '01': '31',
+    '02': '28',
+    '03': '31',
+    '04': '30',
+    '05': '31',
+    '06': '30',
+    '07': '31',
+    '08': '31',
+    '09': '30',
+    '10': '31',
+    '11': '30',
+    '12': '31'
 }
 
 class Country:
@@ -97,6 +97,7 @@ class Program():
 
         ### Finally, the API dictionary is created using the information aquired.
         invitations = {}
+        invitations = {}
         for country in countries:
             invitations[country.country_name] = {
                 'starting date': country.meeting_date,
@@ -110,8 +111,15 @@ class Program():
                         'email': partner.email
                     }
                     invitations[country.country_name]['attendees'].append(a)
+
+        ### This is where the code attempts to post the api, and makes the programmer question everything.
         api_post = requests.post(api_link, data={'data':invitations})
         api_post
         print(api_post)
+        print("I'm sending the API to a website that cares.")
+        radically_bodacious_api_post = requests.post(url = 'https://httpbin.org/post', data = {'data':invitations})
+        radically_bodacious_api_post
+        print(radically_bodacious_api_post)
+        print(invitations)
 
 Program.run()

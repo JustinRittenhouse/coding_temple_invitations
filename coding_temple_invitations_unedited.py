@@ -10,18 +10,18 @@ API_KEY = 'data'
 #     print(partner)
 
 days_in_month = {
-    '01': 31,
-    '02': 28,
-    '03': 31,
-    '04': 30,
-    '05': 31,
-    '06': 30,
-    '07': 31,
-    '08': 31,
-    '09': 30,
-    '10': 31,
-    '11': 30,
-    '12': 31
+    '01': '31',
+    '02': '28',
+    '03': '31',
+    '04': '30',
+    '05': '31',
+    '06': '30',
+    '07': '31',
+    '08': '31',
+    '09': '30',
+    '10': '31',
+    '11': '30',
+    '12': '31'
 }
 
 class Country:
@@ -136,7 +136,15 @@ class Program():
                     invitations[country.country_name]['attendees'].append(a)
         api_post = requests.post(api_link, data={'data':invitations})
         api_post
+        ### This isn't working for any of my peers. I'm guessing there's something wrong on the other end.
         print(api_post)
+        print("I'm sending the API to a website that cares.")
+        radically_bodacious_api_post = requests.post(url = 'https://httpbin.org/post', data = {'data':invitations})
+        radically_bodacious_api_post
+        print(radically_bodacious_api_post)
+        # for key in invitations.keys():
+        #     print(key)
+        #     print(invitations[key]['starting date'])
 
 Program.run()
 ### I was having trouble with posting so I got this from an article Alex sent me.
