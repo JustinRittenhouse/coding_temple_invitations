@@ -112,7 +112,6 @@ class Program():
 
         ### This is where the code attempts to post the api, and makes the programmer question everything.
         api_post = requests.post(api_link, json={'data':invitations})
-        api_post
         print(api_post)
 
 Program.run()
