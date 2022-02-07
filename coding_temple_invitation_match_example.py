@@ -102,7 +102,7 @@ class Program():
                 'attendeeCount': country.attending_count,
                 'attendees': [],
                 'name': country.country_name,
-                'starDate': country.meeting_date
+                'startDate': country.meeting_date
             }
             for partner in country.partners:
                 if partner.availability == True:
