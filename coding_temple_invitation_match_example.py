@@ -1,3 +1,4 @@
+import json
 import requests
 import statistics
 
@@ -110,12 +111,8 @@ class Program():
             invitations.append(c)
 
         ### This is where the code attempts to post the api, and makes the programmer question everything.
-        api_post = requests.post(api_link, data={'data':invitations})
+        api_post = requests.post(api_link, json={'data':invitations})
         api_post
         print(api_post)
-        print("I'm sending the API to a website that cares.")
-        radically_bodacious_api_post = requests.post(url = 'https://httpbin.org/post', data = {'data':invitations})
-        radically_bodacious_api_post
-        print(radically_bodacious_api_post)
 
 Program.run()

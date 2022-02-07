@@ -24,6 +24,7 @@ days_in_month = {
     '12': '31'
 }
 
+### Could I have self updating attributes?
 class Country:
     def __init__(self, country_name, meeting_date = None, partners = None, attending_count = 0):
         self.country_name = country_name
@@ -135,13 +136,14 @@ class Program():
                     }
                     invitations[country.country_name]['attendees'].append(a)
         api_post = requests.post(api_link, data={'data':invitations})
+        ### I'm not sure if I need to call it like this.
         api_post
         ### This isn't working for any of my peers. I'm guessing there's something wrong on the other end.
         print(api_post)
-        print("I'm sending the API to a website that cares.")
-        radically_bodacious_api_post = requests.post(url = 'https://httpbin.org/post', data = {'data':invitations})
-        radically_bodacious_api_post
-        print(radically_bodacious_api_post)
+        # print("I'm sending the API to a website that cares.")
+        # radically_bodacious_api_post = requests.post(url = 'https://httpbin.org/post', data = {'data':invitations})
+        # radically_bodacious_api_post
+        # print(radically_bodacious_api_post)
         # for key in invitations.keys():
         #     print(key)
         #     print(invitations[key]['starting date'])
