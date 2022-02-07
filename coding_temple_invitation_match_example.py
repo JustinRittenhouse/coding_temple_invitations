@@ -96,20 +96,18 @@ class Program():
             countries.append(globals()[country.replace(' ', '_')])
 
         ### Finally, the API dictionary is created using the information aquired.
-        invitations = {}
+        invitations = []
         for country in countries:
-            invitations[country.country_name] = {
-                'starting date': country.meeting_date,
-                'number of attendees': country.attending_count,
-                'attendees': []
+            c = {
+                'attendeeCount': country.attending_count,
+                'attendees': [],
+                'name': country.country_name,
+                'starDate': country.meeting_date
             }
             for partner in country.partners:
                 if partner.availability == True:
-                    a = {
-                        'name': partner.first_name + ' ' + partner.last_name,
-                        'email': partner.email
-                    }
-                    invitations[country.country_name]['attendees'].append(a)
+                    c['attendees'].append(partner.email)
+            invitations.append(c)
 
         ### This is where the code attempts to post the api, and makes the programmer question everything.
         api_post = requests.post(api_link, data={'data':invitations})
