@@ -120,6 +120,5 @@ class Program():
         radically_bodacious_api_post = requests.post(url = 'https://httpbin.org/post', data = {'data':invitations})
         radically_bodacious_api_post
         print(radically_bodacious_api_post)
-        print(invitations)
 
 Program.run()
