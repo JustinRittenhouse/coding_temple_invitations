@@ -97,6 +97,7 @@ class Program():
             countries.append(globals()[country.replace(' ', '_')])
 
         ### Finally, the API dictionary is created using the information aquired.
+        countries = [United_States, Ireland, Spain, Mexico, Canada, Singapore, Japan, United_Kingdom, France]
         invitations = []
         for country in countries:
             c = {

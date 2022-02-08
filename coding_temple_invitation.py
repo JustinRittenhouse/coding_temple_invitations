@@ -1,3 +1,4 @@
+import json
 import requests
 import statistics
 
@@ -112,7 +113,7 @@ class Program():
                     invitations[country.country_name]['attendees'].append(a)
 
         ### This is where the code attempts to post the api, and makes the programmer question everything.
-        api_post = requests.post(api_link, data={'data':invitations})
+        api_post = requests.post(api_link, json={'data':invitations})
         print(api_post)
 
 Program.run()
